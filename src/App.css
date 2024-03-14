@@ -1,38 +1,233 @@
 .App {
   text-align: center;
+  
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #020203;
+  padding: 0 30px;
+  height: 91px;
+}
+.sider{
+  height: calc(100vh - 91px);
+}
+.logo{
+  width: 170px;
+  height: 61px;
+}
+.navbar{
+  display: flex;
+  flex-direction: row;
+}
+.navbar .nav-link{
+  text-decoration: none;
+  color: white;
+  margin-left: 125px;
+ 
+}
+.profil-title .title{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin-bottom: 15px;
+}
+.title span{
+  color: #FF0000;
+  margin-left: 5px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.contente-sider{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-around;
+  background-color: #020203;
+  width: 117px;
+  height: 100%;
+}
+.contente-sider .footer{
   color: white;
+  display: flex;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  align-items: center;
+}
+.footer p{
+  margin: 0;
+  font-size: 12px;
+}
+/***bouton tag****/
+.tag{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+}
+.tag a{
+ 
+  margin-bottom: 10px;
+}
+.tag-yoga{
+  position: absolute;
+  transform: translateY(50%);
+  margin-left: 14px;
 }
 
-.App-link {
-  color: #61dafb;
+.content{
+  display: flex;
+  flex-direction: row-reverse; 
+}
+.profil-title{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+    
+}
+.profil-title h1{
+  margin: 0;
+}
+.section-profil{
+  width: 100%;
+  margin: 20px 77px;
+}
+.content-grid{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  background-color: rgb(189, 208, 223);
+  margin-top: 32px;
+}
+.content-grid .grid-1{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  
+}
+.grid-1 .barchart{
+  width: 100%; 
+  height: 320px;
+  background-color: #FBFBFB;  
+}
+.title-activity{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.barchart .activity{
+  width: 100%;
+  height: 200px;
+  display: flex;
+  margin-top: 30px;
+  overflow: hidden;
+  padding: 0 20px;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title-activity span{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.title-activity span p{
+  display: flex;
+  
+  padding-left: 30px;
+}
+.title-activity span i{
+  background-color: #FF0000;
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+  
+}
+
+.grid-1 .activite-2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 263px;
+  margin-top: 10px;
+}
+.activite-2 .linechart{
+  display: flex;
+  flex-direction: column;
+  
+  width: 32%;
+  background-color:#FF0000 ;
+}
+.linechart .linechart-title{
+  display: flex;
+  justify-content:center ;
+  color: #ffffffb2;
+  margin-top: 20px;
+ width: 100%;
+}
+.linechart .linechart-title p{
+  text-align: start;
+  color: #ffffffb2;
+  width: 60%;
+}
+.linechart .linechart-section{
+  display: flex;
+  width: 100%;
+  height: 126px;
+  margin-top: 60px;
+  
+}
+.activite-2 .radarchart{
+  width: 32%;
+  background-color:#282D30 ;
+}
+.radarchart .performance{
+  width: 100%;
+  height:100% ;
+  
+}
+.activite-2 .bardiabarchart{
+  width: 32%;
+  background-color:#FBFBFB ;
+}
+
+.bardiabarchart .score{
+  width: 100%;
+  height: 100%;
+}
+.content-grid .grid-2{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25%;
+  background-color: rgb(189, 208, 223);
+}
+.grid-2 .col{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 124px;
+  background-color: #FBFBFB;;
+  
+}
+.col .img-icon{
+  width: 60px;
+  height: 60px;
+  
+}
+.col .content-icon{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.content h2{
+  margin: 0;
+}
+.content p{
+  margin: 0;
 }
