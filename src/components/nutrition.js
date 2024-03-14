@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getUserById } from "../Datas/api.js";
 
 function Nutrition({ userId }) {
-  // Recherche de l'utilisateur correspondant dans userData en fonction de son ID
   //   const user = userData.find((user) => user.id === userId);
   const [keyData, setKeyData] = useState({});
 
