@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {
   RadarChart,
   PolarGrid,
@@ -7,24 +8,29 @@ import {
   ResponsiveContainer,
   Radar,
 } from "recharts";
-import userData from "../Datas/data.js";
+import { formatData } from "../Datas/formatDatas.js";
+import { getPerformanceUserById } from "../Datas/api.js";
 
 function Performance({ userId }) {
-  const user = userData.find((user) => user.id === userId);
-  const data = [
-    { name: "Intensité", value: user.performance.intensity },
-    { name: "Vitesse", value: user.performance.speed },
-    { name: "Force", value: user.performance.strength },
-    { name: "Endurance", value: user.performance.endurance },
-    { name: "Energie", value: user.performance.energy },
-    { name: "Cardio", value: user.performance.cardio },
-  ];
+  const [performanceData, setPerformanceData] = useState([]);
+
+  //récupération et mise ajour des données de L'Api
+  useEffect(() => {
+    const loadAverageData = async () => {
+      const response = await getPerformanceUserById(userId);
+      setPerformanceData(response.data.data);
+    };
+    loadAverageData();
+  }, [userId]);
+
+  //formatage des données
+  const formatPerformanceData = formatData(performanceData, "performance");
 
   return (
     <div className="radarchart">
       <div className="performance">
         <ResponsiveContainer>
-          <RadarChart data={data}>
+          <RadarChart data={formatPerformanceData}>
             <PolarGrid radialLines={false} />
             <PolarAngleAxis
               dataKey="name"

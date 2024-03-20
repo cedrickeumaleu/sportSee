@@ -3,6 +3,7 @@ export function formatData(data, dataType) {
   switch (dataType) {
     case "userInfos":
       break;
+
     case "activity":
       data.forEach((element, index) => {
         element.id = index + 1;
@@ -21,7 +22,21 @@ export function formatData(data, dataType) {
       return formatData;
 
     case "performance":
-      break;
+      const kindLabels = {
+        1: "Intensité",
+        2: "Vitesse",
+        3: "Force",
+        4: "Endurance ",
+        5: "Energie",
+        6: "Cardio",
+      };
+      formatData = data.map((element) => {
+        return {
+          name: kindLabels[element.kind],
+          value: element.value,
+        };
+      });
+      return formatData;
     default:
       break;
   }
