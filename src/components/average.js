@@ -11,17 +11,28 @@ import {
 import { formatData } from "../Datas/formatDatas.js";
 import { getAverageUserById } from "../Datas/api.js";
 
+const CustomToolTip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className={"tooltip"}>
+        <p>{`${payload[0].value} min`}</p>
+      </div>
+    );
+  }
+};
+
 function Average({ userId }) {
   const [averageData, setAverageData] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
 
   //récupération et mise ajour des données
+  const fetchData = async () => {
+    const response = await getAverageUserById(userId);
+
+    setAverageData(response.data.sessions);
+  };
   useEffect(() => {
-    const loadAverageData = async () => {
-      const response = await getAverageUserById(userId);
-      setAverageData(response.data.sessions);
-    };
-    loadAverageData();
+    fetchData();
   }, [userId]);
 
   //formatage des données
@@ -42,10 +53,7 @@ function Average({ userId }) {
               axisLine={false} // Supprime la ligne de l'axe
             />
             <YAxis hide />
-            <Tooltip
-              contentStyle={{ fontSize: "12px", width: "30px", height: "10px" }} // Dimensions de la Tooltip réduites
-              formatter={(value) => `${value} min`} // Formatage du texte
-            />
+            <Tooltip content={<CustomToolTip />} />
             <Line
               type="monotone"
               dataKey="sessionLength"

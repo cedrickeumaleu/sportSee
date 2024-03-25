@@ -1,53 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   RadialBar,
   RadialBarChart,
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import userData from "../Datas/data.js";
+
+import { getUserById } from "../Datas/api.js";
 
 function ScoreDay({ userId }) {
-  const user = userData.find((user) => user.id === userId);
-  const percentage = user.todayScore * 100; // Calcul du pourcentage
+  const [todayScore, setTodayScore] = useState({ todayScore: 0 }); // Initialise avec un score de 0
 
-  const data = [
-    {
-      name: "Score",
-      score: percentage,
-    },
-  ];
+  // Calcul du pourcentage
+  const fetchData = async () => {
+    const res = await getUserById(userId);
+    setTodayScore(res.data.todayScore * 100);
+  };
 
-  const outerRadius = `${percentage}%`; // Réglage en fonction du pourcentage
+  useEffect(() => {
+    fetchData();
+  }, [userId]);
+
+  const data = [{ name: "score", value: todayScore + "%", fill: "#FF0000" }];
+
+  // const outerRadius = `${percentage}%`; // Réglage en fonction du pourcentage
 
   return (
-    <div className="score">
-      <ResponsiveContainer>
+    <div className="box-score">
+      <p className={"score"}>
+        <strong>{data[0].value}</strong>de votre <br />
+        objectif
+      </p>
+      <ResponsiveContainer height={250} width="100%">
         <RadialBarChart
-          innerRadius="90%"
-          outerRadius={outerRadius}
+          innerRadius="70%"
+          outerRadius="80%"
           data={data}
           startAngle={90}
-          endAngle={-270}
-          barSize={15}
-          fill="#E60000"
-          background={{ fill: "#f5f5f5" }}
-          clockWise
+          endAngle={180}
+          cx="50%"
+          cy="50%"
         >
-          <RadialBar
-            minAngle={15}
-            label={{ position: "insideStart", fill: "#fff" }}
-            background
-            dataKey="score"
-          />
-          <Legend
-            iconSize={10}
-            width={120}
-            height={140}
-            layout="vertical"
-            verticalAlign="middle"
-            align="right"
-          />
+          <RadialBar dataKey="value" cornerRadius={10} />
         </RadialBarChart>
       </ResponsiveContainer>
     </div>

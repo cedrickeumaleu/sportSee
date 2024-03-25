@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { getUserById } from "../Datas/api.js";
+import { USER_MAIN_DATA } from "../Datas/data.js";
 
 function Nutrition({ userId }) {
   //   const user = userData.find((user) => user.id === userId);
   const [keyData, setKeyData] = useState({});
 
-  // Récupération des données nutritionnelles
-  //   const { calorieCount, proteinCount, carbohydrateCount, lipidCount } =
-  //     keyData;
-
   useEffect(() => {
-    const loadInfoData = async () => {
-      const response = await getUserById(userId);
-      setKeyData(response.data.keyData);
+    const fetchData = async () => {
+      let data = [];
+
+      // Condition pour décider quelle méthode utiliser pour récupérer les données
+      if (userId) {
+        const response = await getUserById(userId);
+        // Vérifier si response est défini et s'il contient la propriété data
+        if (response && response.data) {
+          data = response.data.keyData;
+        }
+      } else {
+        data = USER_MAIN_DATA.keyData;
+      }
+
+      setKeyData(data);
     };
-    loadInfoData();
+
+    fetchData();
   }, [userId]);
   return (
     <div className="grid-2">

@@ -7,13 +7,14 @@ import ActivityBarChart from '../components/activityBarchart';
 import Average from '../components/average';
 import Performance from '../components/performance';
 import ScoreDay from '../components/scoreDay';
+
 function Profil() {
   
   return (
     <div className="content">
         
      <div className="section-profil">
-     <Title/>
+     <Title userId={12}/>
      <div className="content-grid">
         <div className="grid-1">
             
@@ -25,9 +26,9 @@ function Profil() {
                 <Average userId={12}/>
                 
                 <Performance userId={12} />
-                <div className="bardiabarchart">
+                
                     <ScoreDay userId={12}/>
-                </div>
+                
                 
             </div>
         </div>

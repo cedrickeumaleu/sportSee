@@ -7,24 +7,59 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 
 import { formatData } from "../Datas/formatDatas.js";
 import { getActivityUserById } from "../Datas/api.js";
 
+const CustomToolTip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className={"tooltip"}>
+        <p>{`${payload[0].value}${
+          payload[0].name === "kilogram" ? "kg" : "Kcal"
+        }`}</p>
+        <p>{`${payload[1].value}${
+          payload[1].name === "kilogram" ? "kg" : "Kcal"
+        }`}</p>
+      </div>
+    );
+  }
+};
+
+const CustomLegend = ({ payload }) => {
+  if (payload && payload.length) {
+    return (
+      <div className={"legend"}>
+        <span>Activité journalière</span>
+        <ul>
+          {payload.map((entry, index) => (
+            <li key={`item-${index}`}>
+              {entry.value === "kilogram"
+                ? "Poids (kg)"
+                : "Calories brulées (kCal)"}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+};
+
 function ActivityBarChart({ userId }) {
   const [activityData, setActivityData] = useState([]);
 
-  const formatActivityData = formatData(activityData, "activity");
-
-  // Récupérer les données de l'Api
+  const fetchData = async () => {
+    const res = await getActivityUserById(userId);
+    setActivityData(res.data.sessions);
+  };
   useEffect(() => {
-    const loadActivityData = async () => {
-      const response = await getActivityUserById(userId);
-      setActivityData(response.data.sessions);
-    };
-    loadActivityData();
+    fetchData();
   }, [userId]);
+
+  //formatage des donées
+  const formatActivityData = formatData(activityData, "activity");
 
   return (
     <div className="barchart">
@@ -33,7 +68,7 @@ function ActivityBarChart({ userId }) {
         <span>
           <i className="poids"></i>
           <p>Poids (kg)</p>
-          <i></i>
+          <i className="color-kg"></i>
           <p>Calories brûlées (kCal)</p>
         </span>
       </div>
@@ -55,7 +90,12 @@ function ActivityBarChart({ userId }) {
             />
             <YAxis dataKey="calories" hide orientation="left" yAxisId="left" />
 
-            <Tooltip />
+            <Tooltip content={<CustomToolTip />} />
+            <Legend
+              content={<CustomLegend />}
+              verticalAlign="top"
+              height={100}
+            />
             <Bar
               dataKey="kilogram"
               yAxisId="right"

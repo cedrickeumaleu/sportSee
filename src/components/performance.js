@@ -36,7 +36,7 @@ function Performance({ userId }) {
               dataKey="name"
               tick={{ fill: "#FFFFFF" }} //couleur des names
             />
-            <PolarRadiusAxis />
+            <PolarRadiusAxis axisLine={false} tick={false} />
             <Radar
               name="Performance"
               dataKey="value"

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { getUserById } from "../Datas/api.js";
 
-function Title() {
+function Title({ userId }) {
   const [userInfos, setUserInfos] = useState({});
 
-  const loadInfoData = async () => {
-    const response = await getUserById(12);
-    setUserInfos(response.data.userInfos);
+  const fetchData = async () => {
+    const res = await getUserById(userId);
+    setUserInfos(res.data.userInfos);
   };
   useEffect(() => {
-    loadInfoData();
-  }, []);
+    fetchData();
+  }, [userId]);
+
   return (
     <div className="profil-title">
       <div className="title">
