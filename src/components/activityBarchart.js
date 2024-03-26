@@ -16,7 +16,7 @@ import { getActivityUserById } from "../Datas/api.js";
 const CustomToolTip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className={"tooltip"}>
+      <div className={"tooltip-activity"}>
         <p>{`${payload[0].value}${
           payload[0].name === "kilogram" ? "kg" : "Kcal"
         }`}</p>
@@ -49,31 +49,30 @@ const CustomLegend = ({ payload }) => {
 
 function ActivityBarChart({ userId }) {
   const [activityData, setActivityData] = useState([]);
+  const [error, setError] = useState(null); // State pour gérer les erreurs
 
   const fetchData = async () => {
-    const res = await getActivityUserById(userId);
-    setActivityData(res.data.sessions);
+    try {
+      const res = await getActivityUserById(userId);
+      setActivityData(res.data.sessions);
+      setError(null); // Effacer les erreurs précédentes en cas de succès
+    } catch (error) {
+      setError("Une erreur s'est produite lors de la récupération des données");
+    }
   };
   useEffect(() => {
     fetchData();
   }, [userId]);
 
-  //formatage des donées
+  // Formatage des données
   const formatActivityData = formatData(activityData, "activity");
 
   return (
     <div className="barchart">
-      <div className="title-activity">
-        <h4>Activité quotidienne</h4>
-        <span>
-          <i className="poids"></i>
-          <p>Poids (kg)</p>
-          <i className="color-kg"></i>
-          <p>Calories brûlées (kCal)</p>
-        </span>
-      </div>
       <div className="activity">
-        <ResponsiveContainer width="100%" height="100%">
+        {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+        {/* Afficher l'erreur si elle existe */}
+        <ResponsiveContainer>
           <BarChart data={formatActivityData}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis

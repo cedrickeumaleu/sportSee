@@ -8,15 +8,15 @@
   justify-content: space-between;
   align-items: center;
   background-color: #020203;
-  padding: 0 30px;
-  height: 91px;
+  padding: 0 20px;
+  height: 80px;
 }
 .sider{
   height: calc(100vh - 91px);
 }
 .logo{
-  width: 170px;
-  height: 61px;
+  width: 120px;
+  height: auto;
 }
 .navbar{
   display: flex;
@@ -98,7 +98,6 @@
   justify-content: space-between;
   width: 100%;
   height: auto;
-  background-color: rgb(189, 208, 223);
   margin-top: 32px;
 }
 .content-grid .grid-1{
@@ -120,10 +119,8 @@
   padding: 0 20px;
 }
 .barchart .activity{
-  width: 100%;
-  height: 200px;
+  height: 100%;
   display: flex;
-  margin-top: 30px;
   overflow: hidden;
   padding: 0 20px;
   
@@ -189,6 +186,9 @@
 .activite-2 .radarchart{
   width: 32%;
   background-color:#282D30 ;
+  display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .radarchart .performance{
   width: 100%;
@@ -209,7 +209,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 25%;
-  background-color: rgb(189, 208, 223);
+  
 }
 .grid-2 .col{
   display: flex;
@@ -236,14 +236,14 @@
 .content p{
   margin: 0;
 }
-.activity {
+/* .activity {
   position: relative;
   background-color: #FBFBFB;
   width: 100%;
-}
+} */
 
 
-.tooltip {
+.tooltip-activity {
   height: 120px;
   width: 80px;
   display: flex;
@@ -307,11 +307,12 @@
   font-weight: 500;
   font-size: 14px;
 }
-
+/****css score***/
 .box-score {
   background: #FBFBFB;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -357,4 +358,107 @@
       padding: 40px;
       font-size: 14px;
   }
+}
+
+.title-score{
+  position: absolute;
+  width: 83%;
+  top: 36px;
+  left: -60px;
+}
+
+@media (max-width: 1024px) {
+  /* Styles pour les écrans jusqu'à 1024px de largeur */
+
+  .header {
+    padding: 0 30px;
+    height: 70px; 
+  }
+
+  .logo {
+    width: 100px; 
+  }
+
+  .navbar .nav-link {
+    margin-left: 30px; 
+  }
+
+  .section-profil{
+    margin: 20px 30px;
+  }
+  .grid-2 .col{
+    padding: 0 20px;
+  }
+
+  .content-icon h2{
+    font-size: 18px;
+  }
+
+  .title-score{
+    position: absolute;
+    width: 83%;
+    top: 36px;
+    left: -49px;
+  }
+
+  
+}
+
+@media (max-width: 780px) {
+  /* Styles pour les écrans jusqu'à 780px de largeur */
+  .section-profil{
+    margin: 20px 30px;
+  }
+
+  .sider {
+    height: calc(100vh - 70px);
+  }
+
+  .content-grid .grid-1 {
+    width: 70%; 
+  }
+  .content-grid .grid-2{
+    width: 25%;
+  }
+
+  .grid-2 .col{
+    padding: 0 10px;
+  }
+
+  .content-icon h2{
+    font-size: 16px;
+  }
+
+  .col .img-icon{
+    width: 40px;
+    height: 40px;
+  }
+
+  .box-score {
+    width: 33%; 
+  }
+
+  .box-score span:first-child {
+    top: 15px; 
+    left: 15px; 
+    font-size: 12px; 
+  }
+
+  .score {
+    padding: 30px; 
+    min-width: 40px; 
+  }
+
+  .title-score{
+    position: absolute;
+    width: 83%;
+    top: 45px;
+    left: -28px;
+  }
+
+  .linechart .linechart-section{
+    margin-top: 33px;
+  }
+
+  
 }

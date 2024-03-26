@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LineChart,
   Line,
@@ -24,18 +24,24 @@ const CustomToolTip = ({ active, payload }) => {
 function Average({ userId }) {
   const [averageData, setAverageData] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [error, setError] = useState(null); // State pour gérer les erreurs
 
-  //récupération et mise ajour des données
+  // Récupération et mise à jour des données
   const fetchData = async () => {
-    const response = await getAverageUserById(userId);
-
-    setAverageData(response.data.sessions);
+    try {
+      const response = await getAverageUserById(userId);
+      setAverageData(response.data.sessions);
+      setError(null); // Effacer les erreurs précédentes en cas de succès
+    } catch (error) {
+      setError("Une erreur s'est produite lors de la récupération des données");
+    }
   };
+
   useEffect(() => {
     fetchData();
   }, [userId]);
 
-  //formatage des données
+  // Formatage des données
   const formatAverageData = formatData(averageData, "averageSessions");
 
   return (
@@ -44,6 +50,8 @@ function Average({ userId }) {
         <p>Durée moyenne des sessions</p>
       </div>
       <div className="linechart-section">
+        {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+        {/* Afficher l'erreur si elle existe */}
         <ResponsiveContainer>
           <LineChart data={formatAverageData}>
             <XAxis

@@ -2,7 +2,11 @@ export function formatData(data, dataType) {
   let formatData = [];
   switch (dataType) {
     case "userInfos":
-      break;
+      return {
+        firstName: data.userInfos.firstName,
+        lastName: data.userInfos.lastName,
+        age: data.userInfos.age,
+      };
 
     case "activity":
       data.forEach((element, index) => {

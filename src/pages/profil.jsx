@@ -27,7 +27,7 @@ function Profil() {
                 
                 <Performance userId={12} />
                 
-                    <ScoreDay userId={12}/>
+                <ScoreDay userId={12}/>
                 
                 
             </div>

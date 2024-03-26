@@ -18,6 +18,7 @@ export const getUserById = async (userId) => {
     if (!response.ok) {
       throw new Error("Erreur lors de la récupération des données");
     }
+    console.log(response);
     return await response.json();
   } catch (error) {
     const userByID = USER_MAIN_DATA.find(
