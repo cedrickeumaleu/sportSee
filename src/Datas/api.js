@@ -15,10 +15,11 @@ export const getUserById = async (userId) => {
 
   try {
     const response = await fetch(`${BASE_URL}/${userId}`);
+
     if (!response.ok) {
       throw new Error("Erreur lors de la récupération des données");
     }
-    console.log(response);
+
     return await response.json();
   } catch (error) {
     const userByID = USER_MAIN_DATA.find(

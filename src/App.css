@@ -386,6 +386,14 @@
   .section-profil{
     margin: 20px 30px;
   }
+  .tag-img{
+    width: 45px;
+    height: 45px;
+  }
+
+  .contente-sider{
+    width: 84px;
+  }
   .grid-2 .col{
     padding: 0 20px;
   }

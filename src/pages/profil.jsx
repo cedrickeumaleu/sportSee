@@ -40,7 +40,6 @@ function Profil() {
      <div className="section-sider">
      <Sider
         yogaUrl="/images/yoga.png"
-        iconUrl="/images/icon.png"
         natationUrl="/images/natation.png"
         cyclismeUrl="/images/cyclisme.png"
         musculationUrl="/images/musculation.png"     

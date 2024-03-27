@@ -5,8 +5,8 @@ function Sider(props) {
     <div className="contente-sider">
       <nav className="tag">
         <Link className="nav-tag" to={"/"} rel="noopener noreferrer">
-          <img className="tag-yoga" src={props.yogaUrl} alt="logo" />
-          <img className="tag-img" src={props.iconUrl} alt="logo" />
+          {/* <img className="tag-yoga" src={props.yogaUrl} alt="logo" /> */}
+          <img className="tag-img" src={props.yogaUrl} alt="logo" />
         </Link>
 
         <Link
